@@ -1,8 +1,11 @@
 import {Component} from "react";
 
-import CardList from "./components/card-list/card-list.componenet";
 
-import './App.css';
+import CardList from "./components/card-list/card-list.componenet";
+import SearchBox from "./components/searchBox/search-box";
+
+
+import './apps.css'
 
 class App extends Component {
     constructor() {
@@ -40,6 +43,8 @@ class App extends Component {
     render() {
 
 
+
+
         const {Monsters, searchField} = this.state
         const {onSearchChange} = this
         const filterMonster = Monsters.filter((monster) => {
@@ -52,20 +57,12 @@ class App extends Component {
     return (
 
         <div className='App'>
-            <input className='search-box'
-                   type='search'
-                   placeholder='Search Monsters'
-                   onChange={onSearchChange}
-            />
-            {filterMonster.map((monsters) => {
-                return  (
-                <div  key={monsters.id} >
-                    <h1>{monsters.name}</h1>
-                </div>
-                );
-            })}
 
-            < CardList monsters={ Monsters}  />
+
+
+            <SearchBox className = 'monsters-Search-Box' OnChangeHandler={onSearchChange} placeholder='search monsters'  />
+
+            < CardList  monsters={ filterMonster}  searchField = {searchField} />
         </div>
     );
   }
@@ -74,3 +71,5 @@ class App extends Component {
 }
 
 export default App;
+
+
